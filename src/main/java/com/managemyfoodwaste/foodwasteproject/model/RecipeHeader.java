@@ -1,9 +1,6 @@
 package com.managemyfoodwaste.foodwasteproject.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
@@ -11,7 +8,8 @@ import java.time.LocalDateTime;
 @Table(name = "recipe_header")
 public class RecipeHeader {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "recipe_id", updatable = false, nullable = false)
     private Integer recipe_id;
     @NotBlank
     private String recipe_name;

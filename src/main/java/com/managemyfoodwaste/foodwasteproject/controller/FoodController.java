@@ -17,26 +17,26 @@ public class FoodController {
     FoodRepository foodRepository;
 
     // Get All Food
-    @GetMapping("/food")
+    @GetMapping("/api/food")
     public List<Food> getAllFoods() {
         return foodRepository.findAll();
     }
 
     // Create a new Food
-    @PostMapping("/food")
+    @PostMapping("/api/food")
     public Food createFood(@Valid @RequestBody Food food) {
         return foodRepository.save(food);
     }
 
     // Get a Single Food
-    @GetMapping("/food/{id}")
+    @GetMapping("/api/food/{id}")
     public Food getFoodById(@PathVariable(value = "id") Integer food_id) throws FoodNotFoundException {
         return foodRepository.findById(food_id)
                 .orElseThrow(() -> new FoodNotFoundException(food_id));
     }
 
     // Update a Food
-    @PutMapping("/food/{id}")
+    @PutMapping("/api/food/{id}")
     public Food updateFood(@PathVariable(value = "id") Integer food_id,
                            @Valid @RequestBody Food foodDetails) throws FoodNotFoundException {
 

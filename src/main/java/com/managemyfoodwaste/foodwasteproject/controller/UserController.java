@@ -10,33 +10,28 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+import static java.util.Objects.isNull;
+
 @RestController
 public class UserController {
 
     @Autowired
     UserRepository userRepository;
 
-    // Get All User
-    @GetMapping("/user")
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    @GetMapping(path = "/api/authenticate-user")
+    public Boolean authenticateUser(@RequestParam("userEmail") String userEmail, @RequestParam("password") String password) {
+        return !isNull(userRepository.authenticateUserProcedureName(userEmail, password));
     }
 
     // Create a new User
-    @PostMapping("/user")
+    @PostMapping("/api/user")
     public User createUser(@Valid @RequestBody User user) {
         return userRepository.save(user);
     }
 
-    // Get a Single User
-    @GetMapping("/user/{id}")
-    public User getUserById(@PathVariable(value = "id") Integer user_id) throws UserNotFoundException {
-        return userRepository.findById(user_id)
-                .orElseThrow(() -> new UserNotFoundException(user_id));
-    }
 
     // Update a User
-    @PutMapping("/user/{id}")
+    @PutMapping("/api/user/{id}")
     public User updateUser(@PathVariable(value = "id") Integer user_id,
                            @Valid @RequestBody User userDetails) throws UserNotFoundException {
 
@@ -44,7 +39,8 @@ public class UserController {
                 .orElseThrow(() -> new UserNotFoundException(user_id));
 
         user.setUser_name(userDetails.getUser_name());
-        user.setUser_email(userDetails.getUser_email());
+        user.setUserEmail(userDetails.getUserEmail());
+        user.setPassword(userDetails.getPassword());
         user.setCreate_user_id(userDetails.getCreate_user_id());
         user.setCreate_timestamp(userDetails.getCreate_timestamp());
         user.setUpdate_user_id(userDetails.getUpdate_user_id());
@@ -57,7 +53,7 @@ public class UserController {
     }
 
     // Delete a User
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("/api/user/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable(value = "id") Integer user_id) throws UserNotFoundException {
         User user = userRepository.findById(user_id)
                 .orElseThrow(() -> new UserNotFoundException(user_id));

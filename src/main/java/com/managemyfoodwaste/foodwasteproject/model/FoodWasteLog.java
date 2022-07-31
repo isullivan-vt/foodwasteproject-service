@@ -1,9 +1,6 @@
 package com.managemyfoodwaste.foodwasteproject.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,12 +9,14 @@ import java.time.LocalDateTime;
 @Table(name = "food_waste_log")
 public class FoodWasteLog {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "food_waste_log_id", updatable = false, nullable = false)
     private Integer food_waste_log_id;
     private Integer food_id;
     private Double food_quantity;
     private Integer food_quantity_unit_id;
     private LocalDate food_expiration_date;
+    private Double food_cost_usd;
     private String notes;
     private Long create_user_id;
     private LocalDateTime create_timestamp;
@@ -30,7 +29,8 @@ public class FoodWasteLog {
         super();
     }
     public FoodWasteLog(Integer food_waste_log_id_id, Integer food_id, Double food_quantity, Integer food_quantity_unit_id, 
-                        LocalDate food_expiration_date, String notes, Long create_user_id, LocalDateTime create_timestamp, Long update_user_id,
+                        LocalDate food_expiration_date, Double food_cost_usd, String notes, Long create_user_id,
+                        LocalDateTime create_timestamp, Long update_user_id,
                         LocalDateTime update_timestamp, String record_status) {
         super();
         this.food_waste_log_id = food_waste_log_id;
@@ -38,6 +38,7 @@ public class FoodWasteLog {
         this.food_quantity = food_quantity;
         this.food_quantity_unit_id = food_quantity_unit_id;
         this.food_expiration_date = food_expiration_date;
+        this.food_cost_usd = food_cost_usd;
         this.notes = notes;
         this.create_user_id = create_user_id;
         this.create_timestamp = create_timestamp;
@@ -74,6 +75,12 @@ public class FoodWasteLog {
     }
     public void setFood_expiration_date(LocalDate food_expiration_date) {
         this.food_expiration_date = food_expiration_date;
+    }
+    public Double getFood_cost_usd() {
+        return food_cost_usd;
+    }
+    public void setFood_cost_usd(Double food_cost_usd) {
+        this.food_cost_usd = food_cost_usd;
     }
     public String getNotes() { return notes; }
     public void setNotes(String notes) { this.notes = notes; }

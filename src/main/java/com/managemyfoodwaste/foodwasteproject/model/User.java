@@ -1,9 +1,6 @@
 package com.managemyfoodwaste.foodwasteproject.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
@@ -16,7 +13,10 @@ public class User {
     @NotBlank
     private String user_name;
     @NotBlank
-    private String user_email;
+    @Column(name = "user_email")
+    private String userEmail;
+    @NotBlank
+    private String password;
     private Long create_user_id;
     private LocalDateTime create_timestamp;
     private Long update_user_id;
@@ -27,13 +27,14 @@ public class User {
     public User(){
         super();
     }
-    public User(Long userid, String user_name, String user_email,
+    public User(Long userid, String user_name, String userEmail, String password,
                 Long create_user_id, LocalDateTime create_timestamp, Long update_user_id,
                 LocalDateTime update_timestamp, String record_status) {
         super();
         this.userid = userid;
         this.user_name = user_name;
-        this.user_email = user_email;
+        this.userEmail = userEmail;
+        this.password = password;
         this.create_user_id = create_user_id;
         this.create_timestamp = create_timestamp;
         this.update_user_id = update_user_id;
@@ -52,11 +53,17 @@ public class User {
     public void setUser_name(String user_name) {
         this.user_name = user_name;
     }
-    public String getUser_email() {
-        return user_email;
+    public String getUserEmail() {
+        return userEmail;
     }
-    public void setUser_email(String user_email) {
-        this.user_email = user_email;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
     }
     public Long getCreate_user_id() {
         return create_user_id;

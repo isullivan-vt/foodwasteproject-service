@@ -17,26 +17,26 @@ public class RecipeHeaderController {
     RecipeHeaderRepository recipeHeaderRepository;
 
     // Get All Recipe Header
-    @GetMapping("/recipe_header")
-    public List<RecipeHeader> getAllUnits() {
+    @GetMapping("/api/recipe_header")
+    public List<RecipeHeader> getAllRecipeHeaders() {
         return recipeHeaderRepository.findAll();
     }
 
     // Create a new Recipe Header
-    @PostMapping("/recipe_header")
+    @PostMapping("/api/recipe_header")
     public RecipeHeader createRecipeHeader(@Valid @RequestBody RecipeHeader recipeHeader) {
         return recipeHeaderRepository.save(recipeHeader);
     }
 
     // Get a Single Recipe Header
-    @GetMapping("/recipe_header/{id}")
+    @GetMapping("/api/recipe_header/{id}")
     public RecipeHeader getRecipeHeaderById(@PathVariable(value = "id") Integer recipe_id) throws RecipeHeaderNotFoundException {
         return recipeHeaderRepository.findById(recipe_id)
                 .orElseThrow(() -> new RecipeHeaderNotFoundException(recipe_id));
     }
 
     // Update a Recipe Header
-    @PutMapping("/recipe_header/{id}")
+    @PutMapping("/api/recipe_header/{id}")
     public RecipeHeader updateRecipeHeader(@PathVariable(value = "id") Integer recipe_id,
                            @Valid @RequestBody RecipeHeader recipeHeaderDetails) throws RecipeHeaderNotFoundException {
 
@@ -58,7 +58,7 @@ public class RecipeHeaderController {
     }
 
     // Delete a Recipe Header
-    @DeleteMapping("/recipe_header/{id}")
+    @DeleteMapping("/api/recipe_header/{id}")
     public ResponseEntity<?> deleteRecipeHeader(@PathVariable(value = "id") Integer recipe_id) throws RecipeHeaderNotFoundException {
         RecipeHeader recipeHeader = recipeHeaderRepository.findById(recipe_id)
                 .orElseThrow(() -> new RecipeHeaderNotFoundException(recipe_id));

@@ -17,26 +17,33 @@ public class RecipeDetailController {
     RecipeDetailRepository recipeDetailRepository;
 
     // Get All Recipe Detail
-    @GetMapping("/recipe_detail")
-    public List<RecipeDetail> getAllUnits() {
+    @GetMapping("/api/recipe_detail")
+    public List<RecipeDetail> getAllRecipeDetails() {
         return recipeDetailRepository.findAll();
     }
 
+    // Get All Recipe Detail for a recipe
+    @GetMapping("/api/recipe_details/{recipeId}")
+    public List<RecipeDetail> getAllRecipeDetailsByRecipe(@PathVariable(value = "recipeId") Integer recipeId) {
+        return recipeDetailRepository.findByRecipeId(recipeId);
+    }
+
+
     // Create a new Recipe Detail
-    @PostMapping("/recipe_detail")
+    @PostMapping("/api/recipe_detail")
     public RecipeDetail createRecipeDetail(@Valid @RequestBody RecipeDetail recipeDetail) {
         return recipeDetailRepository.save(recipeDetail);
     }
 
     // Get a Single Recipe Detail
-    @GetMapping("/recipe_detail/{id}")
+    @GetMapping("/api/recipe_detail/{id}")
     public RecipeDetail getRecipeDetailById(@PathVariable(value = "id") Integer recipe_detail_id) throws RecipeDetailNotFoundException {
         return recipeDetailRepository.findById(recipe_detail_id)
                 .orElseThrow(() -> new RecipeDetailNotFoundException(recipe_detail_id));
     }
 
     // Update a Recipe Detail
-    @PutMapping("/recipe_detail/{id}")
+    @PutMapping("/api/recipe_detail/{id}")
     public RecipeDetail updateRecipeDetail(@PathVariable(value = "id") Integer recipe_detail_id,
                            @Valid @RequestBody RecipeDetail recipeDetailDetails) throws RecipeDetailNotFoundException {
 
@@ -44,7 +51,7 @@ public class RecipeDetailController {
                 .orElseThrow(() -> new RecipeDetailNotFoundException(recipe_detail_id));
 
         recipeDetail.setFood_id(recipeDetailDetails.getFood_id());
-        recipeDetail.setRecipe_id(recipeDetailDetails.getRecipe_id());
+        recipeDetail.setRecipeId(recipeDetailDetails.getRecipeId());
         recipeDetail.setFood_quantity(recipeDetailDetails.getFood_quantity());
         recipeDetail.setFood_quantity_unit_id(recipeDetailDetails.getFood_quantity_unit_id());
         recipeDetail.setCreate_user_id(recipeDetailDetails.getCreate_user_id());
@@ -59,7 +66,7 @@ public class RecipeDetailController {
     }
 
     // Delete a Recipe Detail
-    @DeleteMapping("/recipe_detail/{id}")
+    @DeleteMapping("/api/recipe_detail/{id}")
     public ResponseEntity<?> deleteRecipeDetail(@PathVariable(value = "id") Integer recipe_detail_id) throws RecipeDetailNotFoundException {
         RecipeDetail recipeDetail = recipeDetailRepository.findById(recipe_detail_id)
                 .orElseThrow(() -> new RecipeDetailNotFoundException(recipe_detail_id));

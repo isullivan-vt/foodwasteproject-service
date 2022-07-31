@@ -1,9 +1,6 @@
 package com.managemyfoodwaste.foodwasteproject.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,10 +9,12 @@ import java.time.LocalDateTime;
 @Table(name = "food_inventory")
 public class FoodInventory {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "food_inventory_id", updatable = false, nullable = false)
     private Integer food_inventory_id;
     private Integer food_id;
     private Double food_quantity;
+    private Integer food_unit_id;
     private LocalDate food_acquisition_date;
     private Double food_cost_usd;
     private String notes;
@@ -29,13 +28,14 @@ public class FoodInventory {
     public FoodInventory(){
         super();
     }
-    public FoodInventory(Integer food_inventory_id, Integer food_id, Double food_quantity, LocalDate food_acquisition_date,
+    public FoodInventory(Integer food_inventory_id, Integer food_id, Double food_quantity, Integer food_unit_id, LocalDate food_acquisition_date,
                          Double food_cost_usd, String notes, Long create_user_id, LocalDateTime create_timestamp, Long update_user_id,
                          LocalDateTime update_timestamp, String record_status) {
         super();
         this.food_inventory_id = food_inventory_id;
         this.food_id = food_id;
         this.food_quantity = food_quantity;
+        this.food_unit_id = food_unit_id;
         this.food_acquisition_date = food_acquisition_date;
         this.food_cost_usd = food_cost_usd;
         this.notes = notes;
@@ -62,6 +62,12 @@ public class FoodInventory {
     }
     public void setFood_quantity(Double food_quantity) {
         this.food_quantity = food_quantity;
+    }
+    public Integer getFood_unit_id() {
+        return food_unit_id;
+    }
+    public void setFood_unit_id(Integer food_unit_id) {
+        this.food_unit_id = food_unit_id;
     }
     public LocalDate getFood_acquisition_date() {
         return food_acquisition_date;

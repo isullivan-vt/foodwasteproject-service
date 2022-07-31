@@ -1,19 +1,18 @@
 package com.managemyfoodwaste.foodwasteproject.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "recipe_detil")
+@Table(name = "recipe_detail")
 public class RecipeDetail {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "recipe_detail_id", updatable = false, nullable = false)
     private Integer recipe_detail_id;
-    private Integer recipe_id;
+    @Column(name = "recipe_id")
+    private Integer recipeId;
     private Integer food_id;
     private Double food_quantity;
     private Integer food_quantity_unit_id;
@@ -27,13 +26,13 @@ public class RecipeDetail {
     public RecipeDetail(){
         super();
     }
-    public RecipeDetail(Integer recipe_detail_id, Integer recipe_id, Integer food_id, Double food_quantity,
+    public RecipeDetail(Integer recipe_detail_id, Integer recipeId, Integer food_id, Double food_quantity,
                         Integer food_quantity_unit_id,
                         Long create_user_id, LocalDateTime create_timestamp, Long update_user_id,
                         LocalDateTime update_timestamp, String record_status) {
         super();
         this.recipe_detail_id = recipe_detail_id;
-        this.recipe_id = recipe_id;
+        this.recipeId = recipeId;
         this.food_id = food_id;
         this.food_quantity = food_quantity;
         this.food_quantity_unit_id = food_quantity_unit_id;
@@ -49,11 +48,11 @@ public class RecipeDetail {
     public void setRecipe_detail_id(Integer recipe_detail_id) {
         this.recipe_detail_id = recipe_detail_id;
     }
-    public Integer getRecipe_id() {
-        return recipe_id;
+    public Integer getRecipeId() {
+        return recipeId;
     }
-    public void setRecipe_id(Integer recipe_id) {
-        this.recipe_id = recipe_id;
+    public void setRecipeId(Integer recipeId) {
+        this.recipeId = recipeId;
     }
     public Integer getFood_id() {
         return food_id;

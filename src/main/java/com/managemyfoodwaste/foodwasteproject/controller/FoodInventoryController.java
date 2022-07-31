@@ -17,26 +17,26 @@ public class FoodInventoryController {
     FoodInventoryRepository foodInventoryRepository;
 
     // Get All Food Inventory
-    @GetMapping("/food_inventory")
+    @GetMapping("/api/food_inventory")
     public List<FoodInventory> getAllFoodInventories() {
         return foodInventoryRepository.findAll();
     }
 
     // Create a new Food Inventory
-    @PostMapping("/food_inventory")
+    @PostMapping("/api/food_inventory")
     public FoodInventory createFoodInventory(@Valid @RequestBody FoodInventory foodInventory) {
         return foodInventoryRepository.save(foodInventory);
     }
 
     // Get a Single Food Inventory
-    @GetMapping("/food_inventory/{id}")
+    @GetMapping("/api/food_inventory/{id}")
     public FoodInventory getFoodInventoryById(@PathVariable(value = "id") Integer food_inventory_id) throws FoodInventoryNotFoundException {
         return foodInventoryRepository.findById(food_inventory_id)
                 .orElseThrow(() -> new FoodInventoryNotFoundException(food_inventory_id));
     }
 
     // Update a Food Inventory
-    @PutMapping("/food_inventory/{id}")
+    @PutMapping("/api/food_inventory/{id}")
     public FoodInventory updateFoodInventory(@PathVariable(value = "id") Integer food_inventory_id,
                            @Valid @RequestBody FoodInventory foodInventoryDetails) throws FoodInventoryNotFoundException {
 
@@ -60,7 +60,7 @@ public class FoodInventoryController {
     }
 
     // Delete a Food Inventory
-    @DeleteMapping("/food_inventory/{id}")
+    @DeleteMapping("/api/food_inventory/{id}")
     public ResponseEntity<?> deleteFoodInventory(@PathVariable(value = "id") Integer food_inventory_id) throws FoodInventoryNotFoundException {
         FoodInventory foodInventory = foodInventoryRepository.findById(food_inventory_id)
                 .orElseThrow(() -> new FoodInventoryNotFoundException(food_inventory_id));

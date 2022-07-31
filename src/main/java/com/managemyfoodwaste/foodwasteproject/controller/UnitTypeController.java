@@ -16,26 +16,26 @@ public class UnitTypeController {
     UnitTypeRepository unitTypeRepository;
 
     // Get All Unit Types
-    @GetMapping("/unit_type")
+    @GetMapping("/api/unit_type")
     public List<UnitType> getAllUnitTypes() {
         return unitTypeRepository.findAll();
     }
 
     // Create a new Unit Type
-    @PostMapping("/unit_type")
+    @PostMapping("/api/unit_type")
     public UnitType createUnitType(@Valid @RequestBody UnitType unitType) {
         return unitTypeRepository.save(unitType);
     }
 
     // Get a Single Unit Type
-    @GetMapping("/unit_type/{id}")
+    @GetMapping("/api/unit_type/{id}")
     public UnitType getUnitTypeById(@PathVariable(value = "id") Integer unit_type_id) throws UnitTypeNotFoundException {
         return unitTypeRepository.findById(unit_type_id)
                 .orElseThrow(() -> new UnitTypeNotFoundException(unit_type_id));
     }
 
     // Update a Unit Type
-    @PutMapping("/unit_type/{id}")
+    @PutMapping("/api/unit_type/{id}")
     public UnitType updateUnitType(@PathVariable(value = "id") Integer unit_type_id,
                            @Valid @RequestBody UnitType unitTypeDetails) throws UnitTypeNotFoundException {
 
@@ -56,7 +56,7 @@ public class UnitTypeController {
     }
 
     // Delete a Unit Type
-    @DeleteMapping("/unit_type/{id}")
+    @DeleteMapping("/api/unit_type/{id}")
     public ResponseEntity<?> deleteUnitType(@PathVariable(value = "id") Integer unit_type_id) throws UnitTypeNotFoundException {
         UnitType unitType = unitTypeRepository.findById(unit_type_id)
                 .orElseThrow(() -> new UnitTypeNotFoundException(unit_type_id));

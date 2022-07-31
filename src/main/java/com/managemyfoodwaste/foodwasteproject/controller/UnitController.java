@@ -17,26 +17,26 @@ public class UnitController {
     UnitRepository unitRepository;
 
     // Get All Unit
-    @GetMapping("/unit")
+    @GetMapping("/api/unit")
     public List<Unit> getAllUnits() {
         return unitRepository.findAll();
     }
 
     // Create a new Unit
-    @PostMapping("/unit")
+    @PostMapping("/api/unit")
     public Unit createUnit(@Valid @RequestBody Unit unit) {
         return unitRepository.save(unit);
     }
 
     // Get a Single Unit
-    @GetMapping("/unit/{id}")
+    @GetMapping("/api/unit/{id}")
     public Unit getUnitById(@PathVariable(value = "id") Integer unit_id) throws UnitNotFoundException {
         return unitRepository.findById(unit_id)
                 .orElseThrow(() -> new UnitNotFoundException(unit_id));
     }
 
     // Update a Unit
-    @PutMapping("/unit/{id}")
+    @PutMapping("/api/unit/{id}")
     public Unit updateUnit(@PathVariable(value = "id") Integer unit_id,
                            @Valid @RequestBody Unit unitDetails) throws UnitNotFoundException {
 
@@ -58,7 +58,7 @@ public class UnitController {
     }
 
     // Delete a Unit
-    @DeleteMapping("/unit/{id}")
+    @DeleteMapping("/api/unit/{id}")
     public ResponseEntity<?> deleteUnit(@PathVariable(value = "id") Integer unit_id) throws UnitNotFoundException {
         Unit unit = unitRepository.findById(unit_id)
                 .orElseThrow(() -> new UnitNotFoundException(unit_id));

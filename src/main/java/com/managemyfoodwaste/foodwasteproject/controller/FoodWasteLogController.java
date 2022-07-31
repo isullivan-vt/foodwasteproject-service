@@ -17,26 +17,26 @@ public class FoodWasteLogController {
     FoodWasteLogRepository foodWasteLogRepository;
 
     // Get All Food Waste Log
-    @GetMapping("/food_waste_log")
+    @GetMapping("/api/food_waste_log")
     public List<FoodWasteLog> getAllFoodWasteLogs() {
         return foodWasteLogRepository.findAll();
     }
 
     // Create a new Food Waste Log
-    @PostMapping("/food_waste_log")
+    @PostMapping("/api/food_waste_log")
     public FoodWasteLog createFoodWasteLog(@Valid @RequestBody FoodWasteLog foodWasteLog) {
         return foodWasteLogRepository.save(foodWasteLog);
     }
 
     // Get a Single Food Waste Log
-    @GetMapping("/food_waste_log/{id}")
+    @GetMapping("/api/food_waste_log/{id}")
     public FoodWasteLog getFoodWasteLogById(@PathVariable(value = "id") Integer food_waste_log_id) throws FoodWasteLogNotFoundException {
         return foodWasteLogRepository.findById(food_waste_log_id)
                 .orElseThrow(() -> new FoodWasteLogNotFoundException(food_waste_log_id));
     }
 
     // Update a Food Waste Log
-    @PutMapping("/food_waste_log/{id}")
+    @PutMapping("/api/food_waste_log/{id}")
     public FoodWasteLog updateWasteLogInventory(@PathVariable(value = "id") Integer food_waste_log_id,
                            @Valid @RequestBody FoodWasteLog foodWasteLogDetails) throws FoodWasteLogNotFoundException {
 
@@ -60,7 +60,7 @@ public class FoodWasteLogController {
     }
 
     // Delete a Food Waste Log
-    @DeleteMapping("/food_waste_log/{id}")
+    @DeleteMapping("/api/food_waste_log/{id}")
     public ResponseEntity<?> deleteFoodWasteLog(@PathVariable(value = "id") Integer food_waste_log_id) throws FoodWasteLogNotFoundException {
         FoodWasteLog foodWasteLog = foodWasteLogRepository.findById(food_waste_log_id)
                 .orElseThrow(() -> new FoodWasteLogNotFoundException(food_waste_log_id));

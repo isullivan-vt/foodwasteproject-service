@@ -17,26 +17,26 @@ public class FoodTypeController {
     FoodTypeRepository foodTypeRepository;
 
     // Get All Food Types
-    @GetMapping("/food_type")
+    @GetMapping("/api/food_type")
     public List<FoodType> getAllFoodTypes() {
         return foodTypeRepository.findAll();
     }
 
     // Create a new Food Type
-    @PostMapping("/food_type")
+    @PostMapping("/api/food_type")
     public FoodType createFoodType(@Valid @RequestBody FoodType foodType) {
         return foodTypeRepository.save(foodType);
     }
 
     // Get a Single Food Type
-    @GetMapping("/food_type/{id}")
+    @GetMapping("/api/food_type/{id}")
     public FoodType getFoodTypeById(@PathVariable(value = "id") Integer food_type_id) throws FoodTypeNotFoundException {
         return foodTypeRepository.findById(food_type_id)
                 .orElseThrow(() -> new FoodTypeNotFoundException(food_type_id));
     }
 
     // Update a Food Type
-    @PutMapping("/food_type/{id}")
+    @PutMapping("/api/food_type/{id}")
     public FoodType updateFoodType(@PathVariable(value = "id") Integer food_type_id,
                            @Valid @RequestBody FoodType foodTypeDetails) throws FoodTypeNotFoundException {
 
@@ -56,7 +56,7 @@ public class FoodTypeController {
     }
 
     // Delete a Food Type
-    @DeleteMapping("/food_type/{id}")
+    @DeleteMapping("/api/food_type/{id}")
     public ResponseEntity<?> deleteFoodType(@PathVariable(value = "id") Integer food_type_id) throws FoodTypeNotFoundException {
         FoodType foodType = foodTypeRepository.findById(food_type_id)
                 .orElseThrow(() -> new FoodTypeNotFoundException(food_type_id));
