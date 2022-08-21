@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "recipe_detail")
 public class RecipeDetail {
+    // Define Data Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "recipe_detail_id", updatable = false, nullable = false)
@@ -26,6 +27,7 @@ public class RecipeDetail {
     public RecipeDetail(){
         super();
     }
+    // Constructor
     public RecipeDetail(Integer recipe_detail_id, Integer recipeId, Integer food_id, Double food_quantity,
                         Integer food_quantity_unit_id,
                         Long create_user_id, LocalDateTime create_timestamp, Long update_user_id,
@@ -42,6 +44,8 @@ public class RecipeDetail {
         this.update_timestamp = update_timestamp;
         this.record_status = record_status;
     }
+
+    // Getter/Setter Methods
     public Integer getRecipe_detail_id() {
         return recipe_detail_id;
     }

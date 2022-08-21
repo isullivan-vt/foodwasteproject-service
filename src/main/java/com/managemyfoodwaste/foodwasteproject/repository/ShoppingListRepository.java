@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface ShoppingListRepository extends JpaRepository<ShoppingList, Integer> {
-    List<ShoppingList> findByStatusIs(String record_status);
+    // Lists all shopping list records where record status and record owner id match parameters
+    List<ShoppingList> findByStatusAndRecordOwnerId(String record_status, Integer recordOwnerId);
 }

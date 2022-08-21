@@ -7,6 +7,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "shopping_list_v")
 public class ShoppingList {
+    // Define Data Fields
     @Id
     private Integer food_inventory_id;
     private Integer food_id;
@@ -23,13 +24,17 @@ public class ShoppingList {
     private LocalDate food_acquisition_date;
     @NotBlank
     private String status;
+    @Column(name = "record_owner_id")
+    private Integer recordOwnerId;
 
     public ShoppingList(){
         super();
     }
+    // Constructor
     public ShoppingList(Integer food_inventory_id, Integer food_id, String food_description, Integer food_type_id,
                         String food_type_description, Double food_quantity, Integer unit_id, String unit_abbreviation
-                        , Double food_cost, LocalDate expiration_date, LocalDate food_acquisition_date, String status) {
+                        , Double food_cost, LocalDate expiration_date, LocalDate food_acquisition_date, String status,
+                        Integer recordOwnerId) {
         super();
         this.food_inventory_id = food_inventory_id;
         this.food_id = food_id;
@@ -43,7 +48,10 @@ public class ShoppingList {
         this.expiration_date = expiration_date;
         this.food_acquisition_date = food_acquisition_date;
         this.status = status;
+        this.recordOwnerId = recordOwnerId;
     }
+
+    // Getter/Setter Methods
     public Integer getFood_inventory_id() {
         return food_inventory_id;
     }
@@ -115,5 +123,11 @@ public class ShoppingList {
     }
     public void setStatus(String status) {
         this.status = status;
+    }
+    public Integer getRecordOwnerId() {
+        return recordOwnerId;
+    }
+    public void setRecordOwnerId(Integer recordOwnerId) {
+        this.recordOwnerId = recordOwnerId;
     }
 }

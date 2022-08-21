@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "food_waste_log")
 public class FoodWasteLog {
+
+    // Define Data Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "food_waste_log_id", updatable = false, nullable = false)
@@ -18,7 +20,8 @@ public class FoodWasteLog {
     private LocalDate food_expiration_date;
     private Double food_cost_usd;
     private String notes;
-    private Long create_user_id;
+    @Column(name = "create_user_id")
+    private Long recordOwnerId;
     private LocalDateTime create_timestamp;
     private Long update_user_id;
     private LocalDateTime update_timestamp;
@@ -28,8 +31,9 @@ public class FoodWasteLog {
     public FoodWasteLog(){
         super();
     }
-    public FoodWasteLog(Integer food_waste_log_id_id, Integer food_id, Double food_quantity, Integer food_quantity_unit_id, 
-                        LocalDate food_expiration_date, Double food_cost_usd, String notes, Long create_user_id,
+    //Constructor
+    public FoodWasteLog(Integer food_waste_log_id_id, Integer food_id, Double food_quantity, Integer food_quantity_unit_id,
+                        LocalDate food_expiration_date, Double food_cost_usd, String notes, Long recordOwnerId,
                         LocalDateTime create_timestamp, Long update_user_id,
                         LocalDateTime update_timestamp, String record_status) {
         super();
@@ -40,12 +44,14 @@ public class FoodWasteLog {
         this.food_expiration_date = food_expiration_date;
         this.food_cost_usd = food_cost_usd;
         this.notes = notes;
-        this.create_user_id = create_user_id;
+        this.recordOwnerId = recordOwnerId;
         this.create_timestamp = create_timestamp;
         this.update_user_id = update_user_id;
         this.update_timestamp = update_timestamp;
         this.record_status = record_status;
     }
+
+    // Getter/Setter Methods
     public Integer getFood_waste_log_id() {
         return food_waste_log_id;
     }
@@ -84,11 +90,11 @@ public class FoodWasteLog {
     }
     public String getNotes() { return notes; }
     public void setNotes(String notes) { this.notes = notes; }
-    public Long getCreate_user_id() {
-        return create_user_id;
+    public Long getRecordOwnerId() {
+        return recordOwnerId;
     }
-    public void setCreate_user_id(Long create_user_id) {
-        this.create_user_id = create_user_id;
+    public void setRecordOwnerId(Long recordOwnerId) {
+        this.recordOwnerId = recordOwnerId;
     }
     public LocalDateTime getCreate_timestamp() {
         return create_timestamp;

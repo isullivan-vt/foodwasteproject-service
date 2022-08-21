@@ -1,17 +1,16 @@
 package com.managemyfoodwaste.foodwasteproject.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "food_type")
 public class FoodType {
+
+    // Define Data Fields
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer food_type_id;
     @NotBlank
     private String food_type_description;
@@ -25,6 +24,7 @@ public class FoodType {
     public FoodType(){
         super();
     }
+    //Constructor
     public FoodType(Integer food_type_id, String food_type_description,
                     Long create_user_id, LocalDateTime create_timestamp, Long update_user_id,
                     LocalDateTime update_timestamp, String record_status) {
@@ -37,6 +37,8 @@ public class FoodType {
         this.update_timestamp = update_timestamp;
         this.record_status = record_status;
     }
+
+    // Getter/Setter Methods
     public Integer getFood_type_id() {
         return food_type_id;
     }

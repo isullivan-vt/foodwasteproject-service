@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "food_inventory")
 public class FoodInventory {
+    // Define data fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "food_inventory_id", updatable = false, nullable = false)
@@ -28,6 +29,7 @@ public class FoodInventory {
     public FoodInventory(){
         super();
     }
+    // Constructor
     public FoodInventory(Integer food_inventory_id, Integer food_id, Double food_quantity, Integer food_unit_id, LocalDate food_acquisition_date,
                          Double food_cost_usd, String notes, Long create_user_id, LocalDateTime create_timestamp, Long update_user_id,
                          LocalDateTime update_timestamp, String record_status) {
@@ -45,6 +47,8 @@ public class FoodInventory {
         this.update_timestamp = update_timestamp;
         this.record_status = record_status;
     }
+
+    // Getter/Setter Methods
     public Integer getFood_inventory_id() {
         return food_inventory_id;
     }

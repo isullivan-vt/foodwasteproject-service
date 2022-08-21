@@ -16,8 +16,8 @@ public class RecipeWindowController {
     RecipeWindowRepository recipeWindowRepository;
 
     // Get All Recipe Detail for a recipe
-    @GetMapping("/api/recipe_window/{recipeId}")
-    public List<RecipeWindow> getAllRecipeWindowRecordsByRecipe(@PathVariable(value = "recipeId") Integer recipeId) {
-        return recipeWindowRepository.findByRecipeId(recipeId);
+    @GetMapping("/api/recipe_window/{recipeId}/{userid}")
+    public List<RecipeWindow> getAllRecipeWindowRecordsByRecipeIdAndRecordOwnerId(@PathVariable(value = "recipeId") Integer recipeId, @PathVariable(value = "userid") Long recordOwnerId) {
+        return recipeWindowRepository.findByRecordOwnerIdAndRecipeIdOrRecordOwnerIdAndRecipeId(recordOwnerId, recipeId, null, recipeId);
     }
 }

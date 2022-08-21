@@ -17,9 +17,9 @@ public class FoodWasteLogController {
     FoodWasteLogRepository foodWasteLogRepository;
 
     // Get All Food Waste Log
-    @GetMapping("/api/food_waste_log")
-    public List<FoodWasteLog> getAllFoodWasteLogs() {
-        return foodWasteLogRepository.findAll();
+    @GetMapping("/api/food-waste-log-list/{userid}")
+    public List<FoodWasteLog> getAllFoodWasteLogs(@PathVariable(value = "userid") Long recordOwnerId) {
+        return foodWasteLogRepository.findByRecordOwnerId(recordOwnerId);
     }
 
     // Create a new Food Waste Log
@@ -48,7 +48,7 @@ public class FoodWasteLogController {
         foodWasteLog.setFood_quantity_unit_id(foodWasteLogDetails.getFood_quantity_unit_id());
         foodWasteLog.setFood_expiration_date(foodWasteLogDetails.getFood_expiration_date());
         foodWasteLog.setNotes(foodWasteLogDetails.getNotes());
-        foodWasteLog.setCreate_user_id(foodWasteLogDetails.getCreate_user_id());
+        foodWasteLog.setRecordOwnerId(foodWasteLogDetails.getRecordOwnerId());
         foodWasteLog.setCreate_timestamp(foodWasteLogDetails.getCreate_timestamp());
         foodWasteLog.setUpdate_user_id(foodWasteLogDetails.getUpdate_user_id());
         foodWasteLog.setUpdate_timestamp(foodWasteLogDetails.getUpdate_timestamp());

@@ -4,11 +4,12 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
+// Define Data Fields
 @Entity
 @Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userid;
     @NotBlank
     private String user_name;
@@ -27,6 +28,7 @@ public class User {
     public User(){
         super();
     }
+    // Constructor
     public User(Long userid, String user_name, String userEmail, String password,
                 Long create_user_id, LocalDateTime create_timestamp, Long update_user_id,
                 LocalDateTime update_timestamp, String record_status) {
@@ -41,6 +43,8 @@ public class User {
         this.update_timestamp = update_timestamp;
         this.record_status = record_status;
     }
+
+    // Getter/Setter Methods
     public Long getUserid() {
         return userid;
     }

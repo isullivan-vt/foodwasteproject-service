@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "food")
 public class Food {
+    // Define Data Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "food_id", updatable = false, nullable = false)
@@ -23,6 +24,7 @@ public class Food {
     @NotBlank
     private String record_status;
 
+    // Constructor
     public Food(){
         super();
     }
@@ -41,6 +43,8 @@ public class Food {
         this.update_timestamp = update_timestamp;
         this.record_status = record_status;
     }
+
+    // Getter/Setter Methods
     public Integer getFood_id() {
         return food_id;
     }

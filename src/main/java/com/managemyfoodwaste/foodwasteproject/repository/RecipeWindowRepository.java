@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface RecipeWindowRepository extends JpaRepository<RecipeWindow, Integer> {
-
-    List<RecipeWindow> findByRecipeId(Integer recipeId);
+    // Lists all recipe window records where record owner id and recipe id  match parameters, or record owner is null
+    List<RecipeWindow> findByRecordOwnerIdAndRecipeIdOrRecordOwnerIdAndRecipeId(Long recordOwnerId, Integer recipeId, Long recordOwnerId2, Integer recipeId2);
 }

@@ -19,8 +19,8 @@ public class UserController {
     UserRepository userRepository;
 
     @GetMapping(path = "/api/authenticate-user")
-    public Boolean authenticateUser(@RequestParam("userEmail") String userEmail, @RequestParam("password") String password) {
-        return !isNull(userRepository.authenticateUserProcedureName(userEmail, password));
+    public Integer authenticateUser(@RequestParam("userEmail") String userEmail, @RequestParam("password") String password) {
+        return (userRepository.authenticateUserProcedureName(userEmail, password));
     }
 
     // Create a new User

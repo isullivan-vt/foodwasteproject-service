@@ -7,8 +7,9 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "unit")
 public class Unit {
+    // Define Data Fields
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer unit_id;
     @NotBlank
     private String unit_description;
@@ -25,6 +26,7 @@ public class Unit {
     public Unit(){
         super();
     }
+    // Constructor
     public Unit(Integer unit_id, String unit_description, String unit_abbreviation, Integer unit_type_id,
                 Long create_user_id, LocalDateTime create_timestamp, Long update_user_id,
                 LocalDateTime update_timestamp, String record_status) {
@@ -39,6 +41,8 @@ public class Unit {
         this.update_timestamp = update_timestamp;
         this.record_status = record_status;
     }
+
+    // Getter/Setter Methods
     public Integer getUnit_id() {
         return unit_id;
     }

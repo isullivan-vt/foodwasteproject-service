@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "recipe_window_v")
 public class RecipeWindow {
+    // Define Data Fields
     @Column(name = "recipe_id")
     private Integer recipeId;
     private Double food_quantity;
@@ -16,12 +17,16 @@ public class RecipeWindow {
     private String food_description;
     private String exists_in_inventory;
     private LocalDate expiration_date;
+    @Column(name="record_owner_id")
+    private Long recordOwnerId;
 
     public RecipeWindow(){
         super();
     }
+    // Constructor
     public RecipeWindow(Integer recipeId,  Double food_quantity, String unit_description,
-                        String food_description, String exists_in_inventory, LocalDate expiration_date) {
+                        String food_description, String exists_in_inventory, LocalDate expiration_date,
+                        Long recordOwnerId) {
         super();
         this.recipeId = recipeId;
         this.food_quantity = food_quantity;
@@ -29,7 +34,10 @@ public class RecipeWindow {
         this.food_description = food_description;
         this.exists_in_inventory = exists_in_inventory;
         this.expiration_date = expiration_date;
+        this.recordOwnerId = recordOwnerId;
     }
+
+    // Getter/Setter Methods
     public Integer getRecipeId() {
         return recipeId;
     }
@@ -65,5 +73,11 @@ public class RecipeWindow {
     }
     public void setExpiration_date(LocalDate expiration_date) {
         this.expiration_date = expiration_date;
+    }
+    public Long getRecordOwnerId() {
+        return recordOwnerId;
+    }
+    public void setRecordOwnerId(Long recordOwnerId) {
+        this.recordOwnerId = recordOwnerId;
     }
 }

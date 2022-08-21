@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "meal_calendar")
 public class MealCalendar {
+    // Define Data Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "meal_calendar_id", updatable = false, nullable = false)
@@ -24,6 +25,7 @@ public class MealCalendar {
     public MealCalendar(){
         super();
     }
+    // Constructor
     public MealCalendar(Integer meal_calendar_id, Integer recipe_id, LocalDate meal_date, Long create_user_id, LocalDateTime create_timestamp, Long update_user_id,
                         LocalDateTime update_timestamp, String record_status) {
         super();
@@ -36,6 +38,8 @@ public class MealCalendar {
         this.update_timestamp = update_timestamp;
         this.record_status = record_status;
     }
+
+    // Getter/Setter Methods
     public Integer getMeal_calendar_id() {
         return meal_calendar_id;
     }

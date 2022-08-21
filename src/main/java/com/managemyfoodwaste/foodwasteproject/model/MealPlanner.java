@@ -9,6 +9,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "meal_planner_v")
 public class MealPlanner {
+    // Define Data Fields
     @Id
     private Integer recipe_id;
     @NotBlank
@@ -19,6 +20,7 @@ public class MealPlanner {
     public MealPlanner(){
         super();
     }
+    // Constructor
     public MealPlanner(Integer recipe_id, String recipe_name, Integer ingredient_count, String recipe_content) {
         super();
         this.recipe_id = recipe_id;
@@ -26,6 +28,7 @@ public class MealPlanner {
         this.ingredient_count = ingredient_count;
         this.recipe_content = recipe_content;
     }
+    // Getter/Setter Methods
     public Integer getRecipe_id() {
         return recipe_id;
     }

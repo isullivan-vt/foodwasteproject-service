@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "recipe_header")
 public class RecipeHeader {
+    // Define Data Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "recipe_id", updatable = false, nullable = false)
@@ -27,6 +28,7 @@ public class RecipeHeader {
     public RecipeHeader(){
         super();
     }
+    // Constructor
     public RecipeHeader(Integer recipe_id, String recipe_name, String recipe_content, String recipe_user_notes,
                         Long create_user_id, LocalDateTime create_timestamp, Long update_user_id,
                         LocalDateTime update_timestamp, String record_status) {
@@ -41,6 +43,8 @@ public class RecipeHeader {
         this.update_timestamp = update_timestamp;
         this.record_status = record_status;
     }
+
+    // Getter/Setter Methods
     public Integer getRecipe_id() {
         return recipe_id;
     }
